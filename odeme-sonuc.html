@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme Sonucu - Rüya Tabiri AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .result-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 50px;
+        }
+
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 50px;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-message {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .result-details {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .primary-btn {
+            padding: 16px 30px;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            padding: 14px 30px;
+            background: transparent;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Başarısız durum */
+        .result-card.failed {
+            border-color: #ef4444;
+        }
+
+        .result-card.failed .result-icon {
+            color: #ef4444;
+        }
+
+        .result-card.failed .result-title {
+            color: #ef4444;
+        }
+
+        /* Confetti animasyonu */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    <div class="confetti" id="confetti"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🌙</span>
+                <span class="logo-text">Rüya Tabiri AI</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="result-page">
+        <div class="result-card" id="result-card">
+            <div class="result-icon" id="result-icon">✅</div>
+            <h1 class="result-title" id="result-title">Ödeme Başarılı!</h1>
+            <p class="result-message" id="result-message">
+                Premium üyeliğiniz başarıyla aktifleştirildi. Artık sınırsız rüya yorumu yapabilirsiniz!
+            </p>
+
+            <div class="result-details" id="result-details">
+                <div class="detail-row">
+                    <span class="detail-label">Paket</span>
+                    <span class="detail-value" id="detail-package">Aylık Premium</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Tutar</span>
+                    <span class="detail-value" id="detail-amount">₺29.99</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Durum</span>
+                    <span class="detail-value" style="color: #22c55e;" id="detail-status">Aktif</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="index.html" class="primary-btn">
+                    ✨ Rüya Yorumlamaya Başla
+                </a>
+                <a href="index.html" class="secondary-btn">
+                    Ana Sayfaya Dön
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // URL parametrelerini al
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const packageId = urlParams.get('package');
+
+        const packages = {
+            'credit10': { name: '10 Kredi Paketi', price: '₺19.99' },
+            'monthly': { name: 'Aylık Premium', price: '₺29.99' },
+            'yearly': { name: 'Yıllık Premium', price: '₺249.99' }
+        };
+
+        const resultCard = document.getElementById('result-card');
+        const resultIcon = document.getElementById('result-icon');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
+        const detailPackage = document.getElementById('detail-package');
+        const detailAmount = document.getElementById('detail-amount');
+        const detailStatus = document.getElementById('detail-status');
+        const confettiContainer = document.getElementById('confetti');
+
+        if (status === 'success') {
+            // Başarılı ödeme
+            const pkg = packages[packageId] || packages['monthly'];
+            detailPackage.textContent = pkg.name;
+            detailAmount.textContent = pkg.price;
+            
+            if (packageId === 'credit10') {
+                resultMessage.textContent = '10 kredi hesabınıza eklendi. Hemen rüya yorumlamaya başlayabilirsiniz!';
+                detailStatus.textContent = '+10 Kredi';
+            }
+
+            // Confetti efekti
+            createConfetti();
+        } else if (status === 'failed') {
+            // Başarısız ödeme
+            resultCard.classList.add('failed');
+            resultIcon.textContent = '❌';
+            resultTitle.textContent = 'Ödeme Başarısız';
+            resultMessage.textContent = 'Ödeme işlemi tamamlanamadı. Lütfen kart bilgilerinizi kontrol edip tekrar deneyin.';
+            detailStatus.textContent = 'Başarısız';
+            detailStatus.style.color = '#ef4444';
+            
+            // Detayları gizle
+            document.getElementById('result-details').style.display = 'none';
+        }
+
+        function createConfetti() {
+            const colors = ['#6366f1', '#8b5cf6', '#d946ef', '#f59e0b', '#22c55e'];
+            
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');
+                span.style.left = Math.random() * 100 + '%';
+                span.style.animationDelay = Math.random() * 3 + 's';
+                span.style.background = colors[Math.floor(Math.random() * colors.length)];
+                span.style.width = Math.random() * 10 + 5 + 'px';
+                span.style.height = span.style.width;
+                span.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confettiContainer.appendChild(span);
+            }
+
+            // 5 saniye sonra confetti'yi kaldır
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

@@ -5,6 +5,8 @@ const DAILY_FREE_CREDITS = 3;
 const STORAGE_KEY_CREDITS = 'ruya_tabiri_credits';
 const STORAGE_KEY_DATE = 'ruya_tabiri_date';
 const STORAGE_KEY_API = 'ruya_tabiri_api_key';
+const STORAGE_KEY_PREMIUM = 'ruya_tabiri_premium';
+const STORAGE_KEY_PREMIUM_TYPE = 'ruya_tabiri_premium_type';
 
 // DOM Elementleri
 const dreamForm = document.getElementById('dream-form');
@@ -18,6 +20,16 @@ const charCurrent = document.getElementById('char-current');
 const newDreamBtn = document.getElementById('new-dream-btn');
 const resetTimeEl = document.getElementById('reset-time');
 
+// ===== Premium Kontrolü =====
+
+function isPremium() {
+    return localStorage.getItem(STORAGE_KEY_PREMIUM) === 'true';
+}
+
+function getPremiumType() {
+    return localStorage.getItem(STORAGE_KEY_PREMIUM_TYPE) || null;
+}
+
 // ===== Kredi Yönetimi =====
 
 function getTodayDate() {
@@ -25,6 +37,11 @@ function getTodayDate() {
 }
 
 function getCredits() {
+    // Premium kullanıcılar için sınırsız
+    if (isPremium()) {
+        return 999;
+    }
+    
     const savedDate = localStorage.getItem(STORAGE_KEY_DATE);
     const today = getTodayDate();
     
@@ -39,6 +56,11 @@ function getCredits() {
 }
 
 function useCredit() {
+    // Premium kullanıcılar kredi harcamaz
+    if (isPremium()) {
+        return true;
+    }
+    
     const credits = getCredits();
     if (credits > 0) {
         localStorage.setItem(STORAGE_KEY_CREDITS, credits - 1);
@@ -48,6 +70,17 @@ function useCredit() {
 }
 
 function updateCreditsDisplay() {
+    // Premium kontrolü
+    if (isPremium()) {
+        remainingCount.textContent = '∞';
+        remainingCount.style.color = '#22c55e';
+        document.querySelector('.remaining-credits span:last-child').innerHTML = 
+            '<strong style="color: #22c55e;">💎 Premium Üye</strong>';
+        dreamForm.style.display = 'block';
+        noCreditsWarning.style.display = 'none';
+        return;
+    }
+    
     const credits = getCredits();
     remainingCount.textContent = credits;
     

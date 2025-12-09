@@ -1,0 +1,40 @@
+# ===================================
+# IYZICO ÖDEME ENTEGRASYONU AYARLARI
+# ===================================
+# Bu dosyayı .env olarak kopyalayın ve değerleri doldurun
+
+# TEST (Sandbox) API Anahtarları
+# iyzico merchant panelinden alınır: https://merchant.iyzipay.com
+IYZICO_API_KEY=sandbox-xxxxxxxxxxxxxxxx
+IYZICO_SECRET_KEY=sandbox-xxxxxxxxxxxxxxxx
+IYZICO_BASE_URL=https://sandbox-api.iyzipay.com
+
+# CANLI (Production) API Anahtarları
+# Canlıya geçerken bunları kullanın:
+# IYZICO_API_KEY=your-live-api-key
+# IYZICO_SECRET_KEY=your-live-secret-key
+# IYZICO_BASE_URL=https://api.iyzipay.com
+
+# ===================================
+# SUNUCU AYARLARI
+# ===================================
+
+PORT=3000
+NODE_ENV=development
+
+# Frontend URL (CORS için)
+FRONTEND_URL=http://127.0.0.1:5500
+
+# Callback URL (3D Secure sonrası dönüş)
+CALLBACK_URL=http://localhost:3000/api/payment/callback
+
+# ===================================
+# NOTLAR
+# ===================================
+# 1. Bu dosyayı .env olarak kopyalayın
+# 2. Gerçek API anahtarlarınızı girin
+# 3. .env dosyasını asla git'e eklemeyin!
+#
+# Test kartları (Sandbox için):
+# - Başarılı: 5528790000000008, CVV: 123, 12/30
+# - Başarısız: 4111111111111129, CVV: 123, 12/30
