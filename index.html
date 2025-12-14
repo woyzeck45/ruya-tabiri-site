@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rüya Tabiri AI - Yapay Zeka ile Rüya Yorumu</title>
+    <meta name="description" content="Yapay zeka destekli rüya tabiri. Rüyanızı yazın, anlamını öğrenin. Ücretsiz rüya yorumu.">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9848122671895559"
+     crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Yıldızlı Arka Plan -->
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🌙</span>
+                <span class="logo-text">Rüya Tabiri AI</span>
+            </div>
+            <nav class="nav">
+                <a href="#tabir" class="nav-link">Rüya Tabiri</a>
+                <a href="#nasil-calisir" class="nav-link">Nasıl Çalışır?</a>
+                <a href="#hakkinda" class="nav-link">Hakkında</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span class="highlight">Yapay Zeka</span> ile<br>
+                Rüyalarınızın Sırrını Çözün
+            </h1>
+            <p class="hero-subtitle">
+                Binlerce yıllık rüya tabiri bilgisi ve modern yapay zeka teknolojisi bir arada. 
+                Rüyanızı yazın, anlamını keşfedin.
+            </p>
+            <a href="#tabir" class="cta-button">
+                <span>✨</span> Rüyamı Yorumla
+            </a>
+        </div>
+    </section>
+
+    <!-- Rüya Tabiri Section -->
+    <section id="tabir" class="tabir-section">
+        <div class="container">
+            <div class="tabir-card">
+                <div class="card-header">
+                    <h2>🔮 Rüyanızı Anlatın</h2>
+                    <p class="card-subtitle">Yapay zeka ile detaylı rüya yorumu alın - Tamamen ücretsiz!</p>
+                </div>
+
+                <form id="dream-form" class="dream-form">
+                    <div class="form-group">
+                        <label for="dream-input">Rüyanızı detaylı bir şekilde yazın...</label>
+                        <textarea 
+                            id="dream-input" 
+                            placeholder="Örnek: Dün gece rüyamda denizde yüzüyordum. Su çok berraktı ve dipte altın paralar gördüm. Onlara ulaşmaya çalışırken birden gökyüzünde ay belirdi..."
+                            rows="6"
+                            maxlength="1000"
+                            required
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="char-current">0</span>/1000 karakter
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="submit-btn">
+                        <span class="btn-icon">🌙</span>
+                        <span class="btn-text">Rüyamı Yorumla</span>
+                        <span class="btn-loading" style="display: none;">
+                            <span class="spinner"></span> Yorumlanıyor...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Sonuç Alanı -->
+                <div id="result-container" class="result-container" style="display: none;">
+                    <div class="result-header">
+                        <h3>🌟 Rüyanızın Yorumu</h3>
+                    </div>
+                    <div id="result-content" class="result-content">
+                        <!-- Sonuç buraya gelecek -->
+                    </div>
+                    <button id="new-dream-btn" class="new-dream-button">
+                        <span>✨</span> Yeni Rüya Yorumlat
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Nasıl Çalışır Section -->
+    <section id="nasil-calisir" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Nasıl Çalışır?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">✍️</div>
+                    <h3>Rüyanızı Yazın</h3>
+                    <p>Gördüğünüz rüyayı mümkün olduğunca detaylı bir şekilde anlatın.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🤖</div>
+                    <h3>AI Analiz Etsin</h3>
+                    <p>Yapay zeka, rüyanızdaki sembolleri ve anlamları analiz eder.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">🔮</div>
+                    <h3>Yorumu Okuyun</h3>
+                    <p>Detaylı ve kişiselleştirilmiş rüya yorumunuzu anında alın.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Özellikler Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Kişiselleştirilmiş</h3>
+                    <p>Her rüya benzersizdir. AI, sizin rüyanıza özel yorum üretir.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Anında Sonuç</h3>
+                    <p>Saniyeler içinde detaylı rüya yorumunuzu alın.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📚</span>
+                    <h3>Kapsamlı Bilgi</h3>
+                    <p>Binlerce yıllık rüya tabiri geleneği ve modern psikoloji bir arada.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Gizlilik</h3>
+                    <p>Rüyalarınız güvende. Verileriniz saklanmaz veya paylaşılmaz.</p>
+                </div>
+                <div class="feature-card highlight-card">
+                    <span class="feature-icon">🎁</span>
+                    <h3>Tamamen Ücretsiz</h3>
+                    <p>Sınırsız rüya yorumu yapabilirsiniz. Hiçbir ücret veya üyelik gerekmez.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkında Section -->
+    <section id="hakkinda" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Hakkında</h2>
+                <p>
+                    Rüya Tabiri AI, geleneksel rüya yorumlama sanatını modern yapay zeka teknolojisiyle 
+                    buluşturan yenilikçi bir platformdur. Binlerce yıllık Türk ve dünya kültürlerindeki 
+                    rüya tabiri bilgisi, gelişmiş dil modelleriyle birleştirilerek size en kapsamlı 
+                    ve kişiselleştirilmiş yorumları sunmaktadır.
+                </p>
+                <p>
+                    Yapay zeka destekli rüya yorumu hizmetimiz tamamen ücretsizdir. Dilediğiniz kadar 
+                    rüya yorumlayabilir, bilinçaltınızın mesajlarını keşfedebilirsiniz.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">🌙</span>
+                    <span class="logo-text">Rüya Tabiri AI</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Gizlilik Politikası</a>
+                    <a href="#" class="footer-link">Kullanım Şartları</a>
+                    <a href="#" class="footer-link">İletişim</a>
+                </div>
+                <p class="copyright">© 2025 Rüya Tabiri AI. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- API Key Modal (Admin için) -->
+    <div id="api-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeApiModal()">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">🔑</span>
+                <h2>API Ayarları</h2>
+            </div>
+            <div class="modal-body">
+                <p>ChatGPT API anahtarınızı girin:</p>
+                <input type="password" id="api-key-input" placeholder="sk-..." class="api-input">
+                <button onclick="saveApiKey()" class="save-api-btn">Kaydet</button>
+                <p class="api-note">
+                    API anahtarı tarayıcınızda yerel olarak saklanır ve güvenlidir.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

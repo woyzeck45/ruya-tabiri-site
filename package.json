@@ -1,0 +1,13 @@
+{
+  "name": "ruya-tabiri-ai",
+  "version": "1.0.0",
+  "description": "Rüya Tabiri AI - Yapay zeka destekli rüya yorumlama",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build complete'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "iyzipay": "^2.0.54"
+  }
+}
